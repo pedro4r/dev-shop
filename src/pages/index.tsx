@@ -1,4 +1,4 @@
-import { HomeContainer, Product } from "@/styles/pages/home"
+import { HomeContainer, Product, ShirtDetails } from "@/styles/pages/home"
 import Head from 'next/head'
 import Image from "next/image"
 import { useKeenSlider } from 'keen-slider/react'
@@ -7,6 +7,9 @@ import { stripe } from "@/lib/stripe"
 import { GetStaticProps } from "next"
 import Stripe from "stripe"
 import Link from "next/link"
+import { Handbag } from "phosphor-react"
+import { useContext } from "react"
+import { ShopContext } from "@/context/ShopContext"
 
 interface HomeProps {
   products: {
@@ -18,6 +21,12 @@ interface HomeProps {
 }
 
 export default function Home({ products }: HomeProps) {
+
+  const { addToCart } = useContext(ShopContext);
+
+  function handleAddToCart() {
+    addToCart('1');
+  }
 
   const [sliderRef] = useKeenSlider({
     slides: {
@@ -39,8 +48,13 @@ export default function Home({ products }: HomeProps) {
               <Product className="keen-slider__slide">
                 <Image src={product.imageUrl} width={520} height={480} alt="" />
                 <footer>
-                  <strong>{product.name}</strong>
-                  <span>{product.price}</span>
+                  <ShirtDetails>
+                    <strong>{product.name}</strong>
+                    <span>{product.price}</span>
+                  </ShirtDetails>
+                  <button onClick={handleAddToCart}>
+                    <Handbag size={32} weight="bold" />
+                  </button>
                 </footer>
               </Product>
             </Link>)

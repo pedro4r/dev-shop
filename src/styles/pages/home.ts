@@ -32,7 +32,7 @@ export const Product = styled('div', {
 
         borderRadius: '6px',
         display: 'flex',
-        alignItems: 'center',
+        flexDirection: 'row',
         justifyContent: 'space-between',
 
         backgroundColor: 'rgba(0,0,0,0.6)',
@@ -41,18 +41,22 @@ export const Product = styled('div', {
         opacity: 0,
         transition: 'all 0.2s ease-in-out',
 
-        strong: {
-            fontSize: '$lg',
-            color: '$white',
+    },
 
-        },
+    button: {
+        height: '3.5rem',
+        width: '3.5rem',
 
-        span: {
-            fontSize: '$xl',
-            fontWeight: 'bold',
-            color: '$green300',
+        borderRadius: 6,
+
+        border: 'none',
+        background: '$green300',
+
+        color: '$white',
+
+        '&:hover': {
+            background: '$green500',
         }
-
     },
 
     '&:hover': {
@@ -60,6 +64,25 @@ export const Product = styled('div', {
             transform: 'translateY(0%)',
             opacity: 1,
         }
-    }
+    },
 
 })
+
+export const ShirtDetails = styled('div', {
+
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '0.25rem',
+
+    strong: {
+        fontSize: '$md',
+        color: '$white',
+    },
+
+    span: {
+        fontSize: '$lg',
+        fontWeight: 'bold',
+        color: '$green300',
+    }
+})
+

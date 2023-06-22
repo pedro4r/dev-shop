@@ -72,8 +72,4 @@ export const ProductDetails = styled('div', {
             backgroundColor: '$green300',
         }
     }
-
-
-
-
 })
