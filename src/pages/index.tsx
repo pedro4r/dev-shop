@@ -17,6 +17,7 @@ interface HomeProps {
     name: string;
     imageUrl: string;
     price: string;
+    defaultPriceId: string;
   }[]
 }
 
@@ -24,8 +25,9 @@ export default function Home({ products }: HomeProps) {
 
   const { addToCart } = useContext(ShopContext);
 
-  function handleAddToCart() {
-    addToCart('1');
+  function handleAddToCart(id: string) {
+    const productChose = products.filter(product => product.id === id);
+    addToCart(productChose[0]);
   }
 
   const [sliderRef] = useKeenSlider({
@@ -44,20 +46,21 @@ export default function Home({ products }: HomeProps) {
       <HomeContainer ref={sliderRef} className="keen-slider">
         {products.map(product => {
           return (
-            <Link key={product.id} href={`/product/${product.id}`} prefetch={false}>
-              <Product className="keen-slider__slide">
-                <Image src={product.imageUrl} width={520} height={480} alt="" />
-                <footer>
+            <Product key={product.id} className="keen-slider__slide">
+              <Image src={product.imageUrl} width={520} height={480} alt="" />
+              <footer>
+                <Link href={`/product/${product.id}`} prefetch={false}>
                   <ShirtDetails>
                     <strong>{product.name}</strong>
                     <span>{product.price}</span>
                   </ShirtDetails>
-                  <button onClick={handleAddToCart}>
-                    <Handbag size={32} weight="bold" />
-                  </button>
-                </footer>
-              </Product>
-            </Link>)
+                </Link>
+                <button onClick={() => handleAddToCart(product.id)}>
+                  <Handbag size={32} weight="bold" />
+                </button>
+              </footer>
+            </Product>
+          )
         })}
       </HomeContainer>
     </>
@@ -80,7 +83,8 @@ export const getStaticProps: GetStaticProps = async () => {
       price: new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
-      }).format(price.unit_amount / 100)
+      }).format(price.unit_amount / 100),
+      defaultPriceId: price.id
     }
   })
 
@@ -89,6 +93,5 @@ export const getStaticProps: GetStaticProps = async () => {
       products,
     },
     revalidate: 60 * 60 * 2,
-
   }
 }
