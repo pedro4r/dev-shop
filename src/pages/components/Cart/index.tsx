@@ -41,44 +41,41 @@ export default function CartList() {
     }
 
     return (
-        <>
-            {isCartOpen &&
-                <CartListContainer>
-                    <header>
-                        <button onClick={toggleCartWindow} >
-                            <X size={32} weight="bold" />
-                        </button>
-                    </header>
-                    <h2>Cart list</h2>
 
-                    {cart.map(item => (
-                        <ItemsList key={item.id}>
-                            <Item>
-                                <ImageContainer>
-                                    <Image src={item.imageUrl} width={94} height={94} alt="" />
-                                </ImageContainer>
-                                <ItemDetails>
-                                    <span>{item.name}</span>
-                                    <strong>{item.price}</strong>
-                                    <button onClick={() => handleRemoveItem(item.id)}>Remove</button>
-                                </ItemDetails>
-                            </Item>
-                        </ItemsList>
-                    ))}
-                    <footer>
-                        <FooterInfo>
-                            <span>Quantity</span>
-                            <span>{itemsQuantity}</span>
-                        </FooterInfo>
-                        <FooterInfo>
-                            <h2>Total</h2>
-                            <strong>${orderAmount.toFixed(2)}</strong>
-                        </FooterInfo>
-                        <button disabled={cart.length === 0} onClick={handleBuyProduct}>Complete Purchase</button>
-                    </footer>
-                </CartListContainer>
-            }
-        </>
+        <CartListContainer open={isCartOpen}>
+            <header>
+                <button onClick={toggleCartWindow} >
+                    <X size={32} weight="bold" />
+                </button>
+            </header>
+            <h2>Cart list</h2>
+
+            {cart.map(item => (
+                <ItemsList key={item.id}>
+                    <Item>
+                        <ImageContainer>
+                            <Image src={item.imageUrl} width={94} height={94} alt="" />
+                        </ImageContainer>
+                        <ItemDetails>
+                            <span>{item.name}</span>
+                            <strong>{item.price}</strong>
+                            <button onClick={() => handleRemoveItem(item.id)}>Remove</button>
+                        </ItemDetails>
+                    </Item>
+                </ItemsList>
+            ))}
+            <footer>
+                <FooterInfo>
+                    <span>Quantity</span>
+                    <span>{itemsQuantity}</span>
+                </FooterInfo>
+                <FooterInfo>
+                    <h2>Total</h2>
+                    <strong>${orderAmount.toFixed(2)}</strong>
+                </FooterInfo>
+                <button disabled={cart.length === 0 || isCreatingCheckoutSession} onClick={handleBuyProduct}>Complete Purchase</button>
+            </footer>
+        </CartListContainer>
     )
 
 }

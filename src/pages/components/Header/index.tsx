@@ -5,7 +5,7 @@ import logoImg from '../../../assets/logo.svg'
 import { ShopContext } from '@/context/ShopContext'
 import { useContext } from 'react'
 
-export function Header() {
+export default function Header() {
 
     const { cartCount, toggleCartWindow } = useContext(ShopContext);
 

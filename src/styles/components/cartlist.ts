@@ -1,19 +1,11 @@
 import { keyframes, styled } from "@stitches/react";
 
-const slideInAnimation = keyframes({
-    '0%': {
-        transform: 'translateX(100%)',
-    },
-    '100%': {
-        transform: 'translateX(0)',
-    },
-});
+
 
 export const CartListContainer = styled('div', {
     display: 'flex',
     flexDirection: 'column',
     gap: '1rem',
-
     position: 'fixed',
     minHeight: '100vh',
     width: '30rem',
@@ -22,12 +14,19 @@ export const CartListContainer = styled('div', {
     backgroundColor: '$gray800',
     zIndex: 1,
     padding: '1.5rem 1.5rem 3rem 3rem',
-
     boxShadow: '-8px 0px 60px rgba(0, 0, 0, 0.8)',
 
-    transition: 'transform 1s ease-out',
-    animation: `${slideInAnimation} 0.5s ease-out`,
-    willChange: 'transform',
+    transform: 'translateX(100%)',
+    transition: 'transform 0.3s ease-in-out',
+
+    variants: {
+        open: {
+            true: {
+                transform: 'translateX(0)',
+            },
+        },
+    },
+
 
     header: {
         width: '100%',
