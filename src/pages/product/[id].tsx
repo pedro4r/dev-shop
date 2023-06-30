@@ -4,6 +4,7 @@ import { ImageContainer, ProductContainer, ProductDetails } from '@/styles/pages
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import Stripe from 'stripe';
 
@@ -20,10 +21,16 @@ interface ProductProps {
 
 export default function Product({ product }: ProductProps) {
 
+    const { isFallback } = useRouter();
+
     const { addToCart } = useContext(ShopContext);
 
     function handleAddToCart() {
         addToCart(product);
+    }
+
+    if (isFallback) {
+        return (<h1>Loading...</h1>)
     }
 
     return (
@@ -62,7 +69,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
                 }
             }
         ],
-        fallback: 'blocking',
+        fallback: true,
     }
 }
 

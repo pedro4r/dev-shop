@@ -1,4 +1,5 @@
-import { styled } from "@stitches/react"
+import { styled } from ".."
+
 
 export const HeaderContainer = styled('header', {
     display: 'flex',

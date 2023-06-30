@@ -4,13 +4,12 @@ import Image from "next/image"
 import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
 import { stripe } from "@/lib/stripe"
-import { GetStaticPaths, GetStaticProps } from "next"
+import { GetStaticProps } from "next"
 import Stripe from "stripe"
 import Link from "next/link"
 import { Handbag } from "phosphor-react"
 import { useContext } from "react"
 import { ShopContext } from "@/context/ShopContext"
-import { useRouter } from "next/router"
 
 interface HomeProps {
   products: {
@@ -65,8 +64,8 @@ export default function Home({ products }: HomeProps) {
         })}
       </HomeContainer>
     </>
-
   )
+
 }
 
 export const getStaticProps: GetStaticProps = async () => {

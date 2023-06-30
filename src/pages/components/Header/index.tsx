@@ -1,7 +1,7 @@
-import Image from 'next/image'
-import { CartButton, CartCounter, HeaderContainer } from '../../../styles/components/header'
-import { Handbag } from 'phosphor-react'
 import logoImg from '../../../assets/logo.svg'
+import { CartButton, CartCounter, HeaderContainer } from '../../../styles/components/header'
+import Image from 'next/image'
+import { Handbag } from 'phosphor-react'
 import { ShopContext } from '@/context/ShopContext'
 import { useContext } from 'react'
 

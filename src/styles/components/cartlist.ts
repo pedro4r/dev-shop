@@ -1,6 +1,4 @@
-import { keyframes, styled } from "@stitches/react";
-
-
+import { styled } from ".."
 
 export const CartListContainer = styled('div', {
     display: 'flex',
@@ -16,17 +14,16 @@ export const CartListContainer = styled('div', {
     padding: '1.5rem 1.5rem 3rem 3rem',
     boxShadow: '-8px 0px 60px rgba(0, 0, 0, 0.8)',
 
-    transform: 'translateX(100%)',
+    transform: 'translateX(0%)',
     transition: 'transform 0.3s ease-in-out',
 
     variants: {
         open: {
-            true: {
-                transform: 'translateX(0)',
+            false: {
+                transform: 'translateX(100%)',
             },
         },
     },
-
 
     header: {
         width: '100%',
