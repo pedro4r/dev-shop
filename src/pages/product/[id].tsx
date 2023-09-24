@@ -22,7 +22,6 @@ interface ProductProps {
 export default function Product({ product }: ProductProps) {
 
     const { isFallback } = useRouter();
-
     const { addToCart } = useContext(ShopContext);
 
     function handleAddToCart() {
@@ -33,31 +32,35 @@ export default function Product({ product }: ProductProps) {
         return (<h1>Loading...</h1>)
     }
 
-    return (
-        <>
-            <Head>
-                <title>{product.name} | IgShop</title>
-            </Head>
+    else {
+        return (
+            <>
+                <Head>
+                    <title>{product.name} | IgShop</title>
+                </Head>
 
-            <ProductContainer>
-                <ImageContainer>
-                    <Image src={product.imageUrl} width={520} height={480} alt='' />
-                </ImageContainer>
+                <ProductContainer>
+                    <ImageContainer>
+                        <Image src={product.imageUrl} width={520} height={480} alt='' />
+                    </ImageContainer>
 
-                <ProductDetails>
-                    <h1>{product.name}</h1>
-                    <span>{product.price}</span>
+                    <ProductDetails>
+                        <h1>{product.name}</h1>
+                        <span>{product.price}</span>
 
-                    <p>{product.description}
-                    </p>
+                        <p>{product.description}
+                        </p>
 
-                    <button onClick={handleAddToCart}>
-                        Add to Cart
-                    </button>
-                </ProductDetails>
-            </ProductContainer>
-        </>
-    )
+                        <button onClick={handleAddToCart}>
+                            Add to Cart
+                        </button>
+                    </ProductDetails>
+                </ProductContainer>
+            </>
+        )
+    }
+
+
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -99,4 +102,8 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({ para
         },
         revalidate: 60 * 60 * 1
     }
+}
+
+function sleep(arg0: number) {
+    throw new Error('Function not implemented.');
 }

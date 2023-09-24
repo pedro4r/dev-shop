@@ -8,7 +8,7 @@ import { GetStaticProps } from "next"
 import Stripe from "stripe"
 import Link from "next/link"
 import { Handbag } from "phosphor-react"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { ShopContext } from "@/context/ShopContext"
 
 interface HomeProps {
